@@ -5,12 +5,12 @@ from scrapy.spiders import CrawlSpider, Rule
 
 class BookSpider(CrawlSpider):
     name = 'book'
-    allowed_domains = ['books.toscrape.com/']
+    allowed_domains = ['books.toscrape.com']
     start_urls = ['http://books.toscrape.com']
 
     rules = (
         Rule(LinkExtractor(restrict_xpaths='//div[@class="image_container"]/a'), callback='parse_item', follow=True),
-        Rule(LinkExtractor(restrict_xpaths='//li[@class="next"]/a')),
+        Rule(LinkExtractor(restrict_xpaths='//li[@class="next"]/a'))
     )
 
     def parse_item(self, response):
